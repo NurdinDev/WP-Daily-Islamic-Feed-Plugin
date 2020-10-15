@@ -53,6 +53,48 @@ class Daily_Islamic_Feed_Admin
 
 		$this->daily_islamic_feed = $daily_islamic_feed;
 		$this->version = $version;
+		$this->admin_actions();
+	}
+
+	/**
+	 * All admin actions.
+	 *
+	 * @since 1.0.0
+	 */
+	public function admin_actions()
+	{
+
+		// add inspiration menu and submenus
+		add_action('admin_menu', array(&$this, 'add_inspiration_menu'));
+		add_action('admin_menu', array(&$this, 'add_inspiration_submenu'));
+	}
+
+	/**
+	 * Inspiration Menu
+	 *
+	 * @since 1.0.0
+	 */
+	public function add_inspiration_menu()
+	{
+		add_menu_page(
+			__('Inspiration', $this->daily_islamic_feed),
+			'Inspiration',
+			'manage_options',
+			'inspiration-menu-top-level',
+			'',
+			plugin_dir_url(__DIR__) . 'public/images/icon.png',
+			6
+		);
+	}
+
+	/**
+	 * Inspiration submenu
+	 *
+	 * @since 1.0.0
+	 */
+	public function add_inspiration_submenu()
+	{
+		add_submenu_page('inspiration-menu-top-level', 'Settings', 'Settings', 'manage_options', 'inspiration-settings-page', 'qjapp_settings_function');
 	}
 
 
