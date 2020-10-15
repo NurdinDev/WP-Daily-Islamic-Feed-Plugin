@@ -86,6 +86,7 @@ class Daily_Islamic_Feed
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 		$this->register_post_types();
+		$this->register_schedule_taxonomy();
 	}
 
 	/**
@@ -134,6 +135,8 @@ class Daily_Islamic_Feed
 
 
 		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-daily-islamic-feed-post-types.php';
+
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-daily-islamic-feed-schedule.php';
 	}
 
 	/**
@@ -153,10 +156,8 @@ class Daily_Islamic_Feed
 		$this->loader->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
 	}
 	/**
-	 * Define the locale for this plugin for internationalization.
+	 * Regsiter the custom posts we defined on Daily_Islamic_Feed_Post_Types
 	 *
-	 * Uses the Daily_Islamic_Feed_i18n class in order to set the domain and to register the hook
-	 * with WordPress.
 	 *
 	 * @since    1.0.0
 	 * @access   private
@@ -167,6 +168,20 @@ class Daily_Islamic_Feed
 		$plugin_posts = new Daily_Islamic_Feed_Post_Types($this->get_daily_islamic_feed());
 
 		$this->loader->add_action('init', $plugin_posts, 'register_post_types');
+	}
+
+	/**
+	 * Regsiter taxonomy we defined on Daily_Islamic_Feed_Schedule
+	 *
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function register_schedule_taxonomy()
+	{
+		$plugin_taxonomy = new Daily_Islamic_Feed_Schedule($this->get_daily_islamic_feed());
+
+		$this->loader->add_action('init', $plugin_taxonomy, 'register_taxonomy');
 	}
 
 	/**

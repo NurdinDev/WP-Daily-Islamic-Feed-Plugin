@@ -3,8 +3,7 @@
 /**
  * Register Custom Post Types
  *
- * Loads and defines the internationalization files for this plugin
- * so that it is ready for translation.
+ * Add extra posts types for Islamic feed contains Hadith, Ayat, and Name-of-Allah posts
  *
  * @link       http://example.com
  * @since      1.0.0
@@ -16,8 +15,7 @@
 /**
  * Register Custom Post Types.
  *
- * Loads and defines the internationalization files for this plugin
- * so that it is ready for translation.
+ * Add extra posts types for Islamic feed contains Hadith, Ayat, and Name-of-Allah posts
  *
  * @since      1.0.0
  * @package    Daily_Islamic_Feed
