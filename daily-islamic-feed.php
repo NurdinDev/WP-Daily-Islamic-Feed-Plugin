@@ -27,7 +27,7 @@ if (!defined('WPINC')) {
  * Rename this for your plugin and update it as you release new versions.
  */
 define('DAILY_ISLAMIC_FEED_VERSION', '1.0.0');
-define('DAILY_ISLAMIC_FEED_DOMAIN', 'daily-islamic-feed');
+define('PLUGIN_DOMAIN', 'daily-islamic-feed');
 
 /**
  * The code that runs during plugin activation.

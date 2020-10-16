@@ -40,21 +40,20 @@ class Daily_Islamic_Feed_Post_Types
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $daily_islamic_feed    The ID of this plugin.
+	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
-	private $daily_islamic_feed;
+	private $plugin_name;
 
 	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
 	 * @param      string    $daily_islamic_feed       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
 	 */
 	public function __construct($daily_islamic_feed)
 	{
 
-		$this->daily_islamic_feed = $daily_islamic_feed;
+		$this->plugin_name = $daily_islamic_feed;
 	}
 
 	/**
@@ -69,18 +68,18 @@ class Daily_Islamic_Feed_Post_Types
 		// Ayah post type.
 		register_post_type(self::$AYAH, array(
 			'labels'       => array(
-				'name'                  => __('Ayah', $this->daily_islamic_feed),
-				'singular_name'         => __('Ayah', $this->daily_islamic_feed),
-				'add_new'               => __('Add New Ayah', $this->daily_islamic_feed),
-				'add_new_item'          => __('Add New Ayah', $this->daily_islamic_feed),
-				'new_item'              => __('New Ayah', $this->daily_islamic_feed),
-				'edit_item'             => __('Edit Ayah', $this->daily_islamic_feed),
-				'view_item'             => __('View Ayah', $this->daily_islamic_feed),
-				'all_items'             => __('Ayat', $this->daily_islamic_feed),
-				'featured_image'        => __('Ayah Cover Image', $this->daily_islamic_feed),
-				'set_featured_image'    => __('Set Cover Image', $this->daily_islamic_feed),
-				'remove_featured_image' => __('Remove Cover Image', $this->daily_islamic_feed),
-				'use_featured_image'    => __('Use Cover Image', $this->daily_islamic_feed),
+				'name'                  => __('Ayah', $this->plugin_name),
+				'singular_name'         => __('Ayah', $this->plugin_name),
+				'add_new'               => __('Add New Ayah', $this->plugin_name),
+				'add_new_item'          => __('Add New Ayah', $this->plugin_name),
+				'new_item'              => __('New Ayah', $this->plugin_name),
+				'edit_item'             => __('Edit Ayah', $this->plugin_name),
+				'view_item'             => __('View Ayah', $this->plugin_name),
+				'all_items'             => __('Ayat', $this->plugin_name),
+				'featured_image'        => __('Ayah Cover Image', $this->plugin_name),
+				'set_featured_image'    => __('Set Cover Image', $this->plugin_name),
+				'remove_featured_image' => __('Remove Cover Image', $this->plugin_name),
+				'use_featured_image'    => __('Use Cover Image', $this->plugin_name),
 			),
 			'public'       => true,
 			'show_in_rest' => true,
@@ -93,18 +92,18 @@ class Daily_Islamic_Feed_Post_Types
 		// Hadit Post Type.
 		register_post_type(self::$HADITH, array(
 			'labels'       => array(
-				'name'                  => __('Hadith', $this->daily_islamic_feed),
-				'singular_name'         => __('Hadith', $this->daily_islamic_feed),
-				'add_new'               => __('Add New Hadith', $this->daily_islamic_feed),
-				'add_new_item'          => __('Add New Hadith', $this->daily_islamic_feed),
-				'new_item'              => __('New Hadith', $this->daily_islamic_feed),
-				'edit_item'             => __('Edit Hadith', $this->daily_islamic_feed),
-				'view_item'             => __('View Hadith', $this->daily_islamic_feed),
-				'all_items'             => __('Hadith', $this->daily_islamic_feed),
-				'featured_image'        => __('Hadith Cover Image', $this->daily_islamic_feed),
-				'set_featured_image'    => __('Set Cover Image', $this->daily_islamic_feed),
-				'remove_featured_image' => __('Remove Cover Image', $this->daily_islamic_feed),
-				'use_featured_image'    => __('Use Cover Image', $this->daily_islamic_feed)
+				'name'                  => __('Hadith', $this->plugin_name),
+				'singular_name'         => __('Hadith', $this->plugin_name),
+				'add_new'               => __('Add New Hadith', $this->plugin_name),
+				'add_new_item'          => __('Add New Hadith', $this->plugin_name),
+				'new_item'              => __('New Hadith', $this->plugin_name),
+				'edit_item'             => __('Edit Hadith', $this->plugin_name),
+				'view_item'             => __('View Hadith', $this->plugin_name),
+				'all_items'             => __('Hadith', $this->plugin_name),
+				'featured_image'        => __('Hadith Cover Image', $this->plugin_name),
+				'set_featured_image'    => __('Set Cover Image', $this->plugin_name),
+				'remove_featured_image' => __('Remove Cover Image', $this->plugin_name),
+				'use_featured_image'    => __('Use Cover Image', $this->plugin_name)
 			),
 			'public'       => true,
 			'show_in_rest' => true,
@@ -118,18 +117,18 @@ class Daily_Islamic_Feed_Post_Types
 		// Names Of Allah Post Types.
 		register_post_type(self::$NAMES, array(
 			'labels'       => array(
-				'name'                  => __('Names of Allah', $this->daily_islamic_feed),
-				'singular_name'         => __('Name of Allah', $this->daily_islamic_feed),
-				'add_new'               => __('Add New Name', $this->daily_islamic_feed),
-				'add_new_item'          => __('Add New Name', $this->daily_islamic_feed),
-				'new_item'              => __('New Name', $this->daily_islamic_feed),
-				'edit_item'             => __('Edit Name', $this->daily_islamic_feed),
-				'view_item'             => __('View Name', $this->daily_islamic_feed),
-				'all_items'             => __('Names of Allah', $this->daily_islamic_feed),
-				'featured_image'        => __('Name Cover Image', $this->daily_islamic_feed),
-				'set_featured_image'    => __('Set Cover Image', $this->daily_islamic_feed),
-				'remove_featured_image' => __('Remove Cover Image', $this->daily_islamic_feed),
-				'use_featured_image'    => __('Use Cover Image', $this->daily_islamic_feed),
+				'name'                  => __('Names of Allah', $this->plugin_name),
+				'singular_name'         => __('Name of Allah', $this->plugin_name),
+				'add_new'               => __('Add New Name', $this->plugin_name),
+				'add_new_item'          => __('Add New Name', $this->plugin_name),
+				'new_item'              => __('New Name', $this->plugin_name),
+				'edit_item'             => __('Edit Name', $this->plugin_name),
+				'view_item'             => __('View Name', $this->plugin_name),
+				'all_items'             => __('Names of Allah', $this->plugin_name),
+				'featured_image'        => __('Name Cover Image', $this->plugin_name),
+				'set_featured_image'    => __('Set Cover Image', $this->plugin_name),
+				'remove_featured_image' => __('Remove Cover Image', $this->plugin_name),
+				'use_featured_image'    => __('Use Cover Image', $this->plugin_name),
 			),
 			'public'       => true,
 			'show_in_rest' => true,

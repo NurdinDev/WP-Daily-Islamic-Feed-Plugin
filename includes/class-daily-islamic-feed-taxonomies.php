@@ -24,7 +24,7 @@
  * @subpackage Daily_Islamic_Feed/includes
  * @author     Your Name <email@example.com>
  */
-class Daily_Islamic_Feed_Schedule
+class Daily_Islamic_Feed_Taxonomies
 {
 
 	/**
@@ -32,7 +32,7 @@ class Daily_Islamic_Feed_Schedule
 	 *
 	 * @since    1.0.0
 	 */
-	public static $NAME = 'schedule';
+	public static $SCHEDULE = 'schedule';
 
 
 	/**
@@ -40,9 +40,9 @@ class Daily_Islamic_Feed_Schedule
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $daily_islamic_feed    The ID of this plugin.
+	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
-	private $daily_islamic_feed;
+	private $plugin_name;
 
 
 	/**
@@ -50,12 +50,11 @@ class Daily_Islamic_Feed_Schedule
 	 *
 	 * @since    1.0.0
 	 * @param      string    $daily_islamic_feed       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
 	 */
 	public function __construct($daily_islamic_feed)
 	{
 
-		$this->daily_islamic_feed = $daily_islamic_feed;
+		$this->plugin_name = $daily_islamic_feed;
 	}
 
 
@@ -69,18 +68,18 @@ class Daily_Islamic_Feed_Schedule
 	public function register_taxonomy()
 	{
 		$labels = array(
-			'name'          => __('Schedule', $this->daily_islamic_feed),
-			'singular_name' => __('Schedule', $this->daily_islamic_feed),
-			'all_items'     => __('All Schedule', $this->daily_islamic_feed),
-			'edit_item'     => __('Edit Schedule', $this->daily_islamic_feed),
-			'update_item'   => __('Update Schedule', $this->daily_islamic_feed),
-			'add_new_item'  => __('Add New Schedule', $this->daily_islamic_feed),
-			'new_item_name' => __('New Schedule Name', $this->daily_islamic_feed),
-			'menu_name'     => __('Scheduling', $this->daily_islamic_feed),
+			'name'          => __('Schedule', $this->plugin_name),
+			'singular_name' => __('Schedule', $this->plugin_name),
+			'all_items'     => __('All Schedule', $this->plugin_name),
+			'edit_item'     => __('Edit Schedule', $this->plugin_name),
+			'update_item'   => __('Update Schedule', $this->plugin_name),
+			'add_new_item'  => __('Add New Schedule', $this->plugin_name),
+			'new_item_name' => __('New Schedule Name', $this->plugin_name),
+			'menu_name'     => __('Scheduling', $this->plugin_name),
 		);
 
 		register_taxonomy(
-			self::$NAME,
+			self::$SCHEDULE,
 			array('post', Daily_Islamic_Feed_Post_Types::$HADITH, Daily_Islamic_Feed_Post_Types::$AYAH),
 			array(
 				'hierarchical'          => false,

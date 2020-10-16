@@ -45,9 +45,9 @@ class Daily_Islamic_Feed
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $daily_islamic_feed    The string used to uniquely identify this plugin.
+	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
 	 */
-	protected $daily_islamic_feed;
+	protected $plugin_name;
 
 	/**
 	 * The current version of the plugin.
@@ -75,10 +75,10 @@ class Daily_Islamic_Feed
 			$this->version = '1.0.0';
 		}
 
-		if (defined('DAILY_ISLAMIC_FEED_DOMAIN')) {
-			$this->daily_islamic_feed = DAILY_ISLAMIC_FEED_DOMAIN;
+		if (defined('PLUGIN_DOMAIN')) {
+			$this->plugin_name = PLUGIN_DOMAIN;
 		} else {
-			$this->daily_islamic_feed = 'daily-islamic-feed';
+			$this->plugin_name = 'daily-islamic-feed';
 		}
 
 		$this->load_dependencies();
@@ -86,7 +86,8 @@ class Daily_Islamic_Feed
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 		$this->register_post_types();
-		$this->register_schedule_taxonomy();
+		$this->register_taxonomy();
+		$this->register_fields();
 	}
 
 	/**
@@ -136,7 +137,9 @@ class Daily_Islamic_Feed
 
 		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-daily-islamic-feed-post-types.php';
 
-		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-daily-islamic-feed-schedule.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-daily-islamic-feed-taxonomies.php';
+
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-daily-islamic-feed-custom-fields.php';
 	}
 
 	/**
@@ -165,7 +168,7 @@ class Daily_Islamic_Feed
 	private function register_post_types()
 	{
 
-		$plugin_posts = new Daily_Islamic_Feed_Post_Types($this->get_daily_islamic_feed());
+		$plugin_posts = new Daily_Islamic_Feed_Post_Types($this->get_plugin_name());
 
 		$this->loader->add_action('init', $plugin_posts, 'register_post_types');
 	}
@@ -177,11 +180,28 @@ class Daily_Islamic_Feed
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function register_schedule_taxonomy()
+	private function register_taxonomy()
 	{
-		$plugin_taxonomy = new Daily_Islamic_Feed_Schedule($this->get_daily_islamic_feed());
+		$plugin_taxonomies = new Daily_Islamic_Feed_Taxonomies($this->get_plugin_name());
+		$this->loader->add_action('init', $plugin_taxonomies, 'register_taxonomy');
+	}
 
-		$this->loader->add_action('init', $plugin_taxonomy, 'register_taxonomy');
+	/**
+	 * Regsiter taxonomy we defined on Daily_Islamic_Feed_Custom_Fields
+	 *
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function register_fields()
+	{
+		$plugin_fields = new Daily_Islamic_Feed_Custom_Fields($this->get_plugin_name());
+
+		// add custom field for start and end date on schedule taxonomy
+		$this->loader->add_action(Daily_Islamic_Feed_Taxonomies::$SCHEDULE . '_add_form_fields', $plugin_fields, 'schedule_add_field', 10, 2);
+		$this->loader->add_action(Daily_Islamic_Feed_Taxonomies::$SCHEDULE . '_edit_form_fields', $plugin_fields, 'schedule_edit_field', 10);
+		$this->loader->add_action('edited_' . Daily_Islamic_Feed_Taxonomies::$SCHEDULE, $plugin_fields, 'schedule_save_field');
+		$this->loader->add_action('create_' . Daily_Islamic_Feed_Taxonomies::$SCHEDULE, $plugin_fields, 'schedule_save_field');
 	}
 
 	/**
@@ -194,10 +214,13 @@ class Daily_Islamic_Feed
 	private function define_admin_hooks()
 	{
 
-		$plugin_admin = new Daily_Islamic_Feed_Admin($this->get_daily_islamic_feed(), $this->get_version());
+		$plugin_admin = new Daily_Islamic_Feed_Admin($this->get_plugin_name(), $this->get_version());
 
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
+
+		$this->loader->add_action('admin_menu',  $plugin_admin, 'add_inspiration_menu');
+		$this->loader->add_action('admin_menu',  $plugin_admin, 'add_inspiration_settings_submenu');
 	}
 
 	/**
@@ -210,7 +233,7 @@ class Daily_Islamic_Feed
 	private function define_public_hooks()
 	{
 
-		$plugin_public = new Daily_Islamic_Feed_Public($this->get_daily_islamic_feed(), $this->get_version());
+		$plugin_public = new Daily_Islamic_Feed_Public($this->get_plugin_name(), $this->get_version());
 
 		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
 		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
@@ -233,9 +256,9 @@ class Daily_Islamic_Feed
 	 * @since     1.0.0
 	 * @return    string    The name of the plugin.
 	 */
-	public function get_daily_islamic_feed()
+	public function get_plugin_name()
 	{
-		return $this->daily_islamic_feed;
+		return $this->plugin_name;
 	}
 
 	/**

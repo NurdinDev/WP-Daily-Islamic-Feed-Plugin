@@ -26,8 +26,6 @@
  */
 class Daily_Islamic_Feed_i18n {
 
-
-
 	/**
 	 * Load the plugin text domain for translation.
 	 *
