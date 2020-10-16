@@ -30,7 +30,7 @@ class Daily_Islamic_Feed_Admin
 	 * @access   private
 	 * @var      string    $daily_islamic_feed    The ID of this plugin.
 	 */
-	private $daily_islamic_feed;
+	private $plugin_name;
 
 	/**
 	 * The version of this plugin.
@@ -51,22 +51,8 @@ class Daily_Islamic_Feed_Admin
 	public function __construct($daily_islamic_feed, $version)
 	{
 
-		$this->daily_islamic_feed = $daily_islamic_feed;
+		$this->plugin_name = $daily_islamic_feed;
 		$this->version = $version;
-		$this->admin_actions();
-	}
-
-	/**
-	 * All admin actions.
-	 *
-	 * @since 1.0.0
-	 */
-	public function admin_actions()
-	{
-
-		// add inspiration menu and submenus
-		add_action('admin_menu', array(&$this, 'add_inspiration_menu'));
-		add_action('admin_menu', array(&$this, 'add_inspiration_submenu'));
 	}
 
 	/**
@@ -77,7 +63,7 @@ class Daily_Islamic_Feed_Admin
 	public function add_inspiration_menu()
 	{
 		add_menu_page(
-			__('Inspiration', $this->daily_islamic_feed),
+			__('Inspiration', $this->plugin_name),
 			'Inspiration',
 			'manage_options',
 			'inspiration-menu-top-level',
@@ -88,13 +74,31 @@ class Daily_Islamic_Feed_Admin
 	}
 
 	/**
-	 * Inspiration submenu
+	 * Register the administration menu for this plugin into the Dashboard menu.
 	 *
-	 * @since 1.0.0
+	 * @since    1.0.0
 	 */
-	public function add_inspiration_submenu()
+
+	public function add_inspiration_settings_submenu()
 	{
-		add_submenu_page('inspiration-menu-top-level', 'Settings', 'Settings', 'manage_options', 'inspiration-settings-page', 'qjapp_settings_function');
+
+		/*
+	     * Add a settings page for this plugin to the Settings menu.
+	     */
+
+		add_submenu_page('inspiration-menu-top-level', 'Settings', 'Settings', 'manage_options', $this->plugin_name, array($this, 'display_settings_page'));
+	}
+
+
+	/**
+	 * Render the setting page for this plugin.
+	 *
+	 * @since    1.0.0
+	 */
+
+	public function display_settings_page()
+	{
+		include_once('partials/daily-islamic-feed-settings.php');
 	}
 
 
@@ -118,7 +122,7 @@ class Daily_Islamic_Feed_Admin
 		 * class.
 		 */
 
-		wp_enqueue_style($this->daily_islamic_feed, plugin_dir_url(__FILE__) . 'css/daily-islamic-feed-admin.css', array(), $this->version, 'all');
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/daily-islamic-feed-admin.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -141,6 +145,6 @@ class Daily_Islamic_Feed_Admin
 		 * class.
 		 */
 
-		wp_enqueue_script($this->daily_islamic_feed, plugin_dir_url(__FILE__) . 'js/daily-islamic-feed-admin.js', array('jquery'), $this->version, false);
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/daily-islamic-feed-admin.js', array('jquery'), $this->version, false);
 	}
 }
