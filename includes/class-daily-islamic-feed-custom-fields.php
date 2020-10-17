@@ -32,17 +32,27 @@ class Daily_Islamic_Feed_Custom_Fields
 	 */
 	private $plugin_name;
 
+	/**
+	 * The current version of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      string    $version    The current version of the plugin.
+	 */
+	protected $version;
 
 	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
 	 * @param      string    $plugin_name       The name of this plugin.
+	 * @param      string    $version       The version of this plugin.
 	 */
-	public function __construct($daily_islamic_feed)
+	public function __construct($daily_islamic_feed, $version)
 	{
 
 		$this->plugin_name = $daily_islamic_feed;
+		$this->version = $version;
 	}
 
 	/**
@@ -52,12 +62,17 @@ class Daily_Islamic_Feed_Custom_Fields
 	public function schedule_add_field()
 	{
 ?>
-		<div class="form-field">
-			<label for="taxImage"><?php _e('Image', 'yourtextdomain'); ?></label>
 
-			<input type="text" name="taxImage" id="taxImage" value="">
+		<div class="form-field term-daterange-wrap">
+			<label for="daterange">Date Range</label>
+			<input type="text" name="daterange" id="daterange" />
 		</div>
 	<?php
+	}
+
+	public function date_add_slashes($str)
+	{
+		return substr($str, 0, 2) . "/" . substr($str, 2, 2) . "/" . substr($str, 4, 4);
 	}
 
 	/**
@@ -70,15 +85,25 @@ class Daily_Islamic_Feed_Custom_Fields
 		// put the term ID into a variable
 		$t_id = $term->term_id;
 
-		$term_image = get_term_meta($t_id, 'image', true);
-	?>
-		<tr class="form-field">
-			<th><label for="taxImage"><?php _e('Image', 'yourtextdomain'); ?></label></th>
+		$term_start_date = get_term_meta($t_id, 'start_date', true);
+		$term_end_date = get_term_meta($t_id, 'end_date', true);
 
+		if (empty($term_end_date)) {
+			$term_end_date = $term_start_date;
+		}
+		$formated_date = $term_start_date ? $this->date_add_slashes($term_start_date) . " - " . $this->date_add_slashes($term_end_date) : '';
+	?>
+
+
+		<tr class="form-field">
+			<th scope="row" valign="top">
+				<label for="daterange">Date Range</label>
+			</th>
 			<td>
-				<input type="text" name="taxImage" id="taxImage" value="<?php echo esc_attr($term_image) ? esc_attr($term_image) : ''; ?>">
+				<input type="text" name="daterange" value="<?php echo $formated_date  ? $formated_date : ''; ?>">
 			</td>
 		</tr>
+
 <?php
 	}
 
@@ -89,10 +114,13 @@ class Daily_Islamic_Feed_Custom_Fields
 	function schedule_save_field($term_id)
 	{
 
-		if (isset($_POST['taxImage'])) {
-			$term_image = $_POST['taxImage'];
-			if ($term_image) {
-				update_term_meta($term_id, 'image', $term_image);
+		if (isset($_POST['daterange'])) {
+			$term_date_range = $_POST['daterange'];
+			if ($term_date_range) {
+				$term_date_range = str_replace("/", "", $term_date_range);
+				$dateObj = explode(" - ", $term_date_range);
+				update_term_meta($term_id, 'start_date', $dateObj[0]);
+				update_term_meta($term_id, 'end_date', $dateObj[1]);
 			}
 		}
 	}
