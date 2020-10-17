@@ -122,6 +122,8 @@ class Daily_Islamic_Feed_Admin
 		 * class.
 		 */
 
+		wp_enqueue_style($this->plugin_name . 'daterangepicker.css', 'https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css', array(), $this->version, 'all');
+
 		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/daily-islamic-feed-admin.css', array(), $this->version, 'all');
 	}
 
@@ -144,6 +146,11 @@ class Daily_Islamic_Feed_Admin
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+
+
+		wp_enqueue_script($this->plugin_name . 'moment.min.js', 'https://cdn.jsdelivr.net/momentjs/latest/moment.min.js', array(), $this->version, true);
+		wp_enqueue_script($this->plugin_name . 'daterangepicker.min.js', 'https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js', array(), $this->version, true);
+
 
 		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/daily-islamic-feed-admin.js', array('jquery'), $this->version, false);
 	}
