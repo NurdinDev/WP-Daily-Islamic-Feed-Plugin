@@ -1,5 +1,5 @@
-(function( $ ) {
-	'use strict';
+(function ($) {
+	"use strict";
 
 	/**
 	 * All of the code for your admin-facing JavaScript source
@@ -29,4 +29,18 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
-})( jQuery );
+	$(document).ready(function () {
+		$('input[name="daterange"]').daterangepicker({
+			"autoApply": true,
+			"opens": "left",
+			"locale": {
+				"format": "DD/MM/YYYY",
+				"separator": " - ",
+				"fromLabel": "From",
+				"toLabel": "To"
+			},
+		}, function(start, end, label) {
+		  console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+		});
+	});
+})(jQuery);
