@@ -20,16 +20,17 @@
  * @subpackage Daily_Islamic_Feed/public
  * @author     Your Name <email@example.com>
  */
-class Daily_Islamic_Feed_Public {
+class Daily_Islamic_Feed_Public
+{
 
 	/**
 	 * The ID of this plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $daily_islamic_feed    The ID of this plugin.
+	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
-	private $daily_islamic_feed;
+	private $plugin_name;
 
 	/**
 	 * The version of this plugin.
@@ -47,11 +48,12 @@ class Daily_Islamic_Feed_Public {
 	 * @param      string    $daily_islamic_feed       The name of the plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $daily_islamic_feed, $version ) {
+	public function __construct($daily_islamic_feed, $version)
+	{
 
-		$this->daily_islamic_feed = $daily_islamic_feed;
+		$this->plugin_name = $daily_islamic_feed;
 		$this->version = $version;
-
+		// $this->register_rest_routes();
 	}
 
 	/**
@@ -59,7 +61,8 @@ class Daily_Islamic_Feed_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
+	public function enqueue_styles()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -73,8 +76,7 @@ class Daily_Islamic_Feed_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->daily_islamic_feed, plugin_dir_url( __FILE__ ) . 'css/daily-islamic-feed-public.css', array(), $this->version, 'all' );
-
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/daily-islamic-feed-public.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -82,7 +84,8 @@ class Daily_Islamic_Feed_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -96,8 +99,23 @@ class Daily_Islamic_Feed_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->daily_islamic_feed, plugin_dir_url( __FILE__ ) . 'js/daily-islamic-feed-public.js', array( 'jquery' ), $this->version, false );
-
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/daily-islamic-feed-public.js', array('jquery'), $this->version, false);
 	}
 
+	/**
+	 * Register REST API routes.
+	 *
+	 * @since 1.0.0
+	 */
+	public function register_rest_routes()
+	{
+
+		require_once plugin_dir_path(__DIR__) . 'includes/api-endpoints/class-wp-rest-today-controller.php';
+
+		$controller = new WP_REST_TODAY_CONTROLLER($this->plugin_name, $this->version);
+
+		if (is_subclass_of($controller, 'WP_REST_Controller')) {
+			$controller->register_routes();
+		}
+	}
 }
