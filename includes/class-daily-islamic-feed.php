@@ -195,9 +195,11 @@ class Daily_Islamic_Feed
 	 */
 	private function register_fields()
 	{
-		$plugin_fields = new Daily_Islamic_Feed_Custom_Fields($this->get_plugin_name());
+		$plugin_fields = new Daily_Islamic_Feed_Custom_Fields($this->get_plugin_name(), $this->get_version());
 
 		// add custom field for start and end date on schedule taxonomy
+
+
 		$this->loader->add_action(Daily_Islamic_Feed_Taxonomies::$SCHEDULE . '_add_form_fields', $plugin_fields, 'schedule_add_field', 10, 2);
 		$this->loader->add_action(Daily_Islamic_Feed_Taxonomies::$SCHEDULE . '_edit_form_fields', $plugin_fields, 'schedule_edit_field', 10);
 		$this->loader->add_action('edited_' . Daily_Islamic_Feed_Taxonomies::$SCHEDULE, $plugin_fields, 'schedule_save_field');
