@@ -12,7 +12,7 @@ For now, it's just a rest API plugin later I'll add shortcodes and widget to sho
 
 ## Why I built this plugin? ##
 
-During my daily work I've involved moving the CMS that Quran Journey use to WordPress, this app provides daily Islamic feeds in the inspiration section from Haith, Ayat, and Quote
+During my daily work I've involved moving the CMS that [Quran Journey](http://app.quranjourney.co) use to WordPress, this app provides daily Islamic feeds in the inspiration section from Haith, Ayat, and Quote
 - The easiest way to start is to create a custom field on each post to select the post type (Haith, Ayat, Quote) and `show/end date` if this post should show and ending a specific date, and fetch them as normal using default WordPress RestAPI.
 	But I found it difficult to manage custom fields in WordPress, for example, if you decide to rename the field you should go to each post and rename it or use a custom SQL query to alter the field name directly on the database.
 - The next solution for this, is to use the Advanced Custom Field plugin and Custom Post Type UI plugin, and this way working well.
