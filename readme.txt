@@ -1,6 +1,5 @@
 === Daily Islamic Feed ===
-Contributors: (this should be a list of wordpress.org userid's)
-Tags: comments, spam
+Tags: Islamic feed, Ramadan, Ayat, Hadith
 Requires at least: 4.5
 Tested up to: 5.5.1
 Requires PHP: 5.6
@@ -8,107 +7,175 @@ Stable tag: 0.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+A WordPress Plugin that Adds a new post type for Islamic content and adds a new REST-API to get daily posts randomly or by scheduled time like Ramadan feed.
+For now, it's just a rest API plugin later I'll add shortcodes and widget to show the data on the theme.
+
+== Why I built this plugin? ==
+
+During my daily work I've involved moving the CMS that Quran Journey use to WordPress, this app provides daily Islamic feeds in the inspiration section from Haith, Ayat, and Quote
+- The easiest way to start is to create a custom field on each post to select the post type (Haith, Ayat, Quote) and `show/end date` if this post should show and ending a specific date, and fetch them as normal using default WordPress RestAPI.
+	But I found it difficult to manage custom fields in WordPress, for example, if you decide to rename the field you should go to each post and rename it or use a custom SQL query to alter the field name directly on the database.
+- The next solution for this, is to use the Advanced Custom Field plugin and Custom Post Type UI plugin, and this way working well.
+	But in the frontend app, I need to make 4 requests to check if there are scheduled posts on a specific date and another 4 requests to get random feed if there is no schedule on the same date.
+	so the app will make a lot of requests to fetch inspiration feed and in my opinion, that's a lot.
+- My solution, I think if I create a single rest API route and manage everything on the server and return the final result to the user that will be awesome, but I don't have any experience in PHP and WordPress development 😅
+	- What I solve?
+		- A single request to fetch the daily feed in the inspiration section
+		- A cache on each day that helps all users get the same random posts each day with less talk to the database
+		- fast change and mange, if there is a new post type coming or some requirement changed like show us Ayat before Hadith in the page, instead of change this on the frontend and build IOS, and Android, publish the app and wait for hours and days,
+			instead, it's just a small change in the plugin, and later I'll add a setting page to control the order and other stuff from the UI and manage the feed like a pro ;)
+
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+This plugin adds:
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+- `Haith` `Ayat` and `Names Of Allah` as a new post type under the Inspiration menu.
+- `schedule` as a taxonomy to group posts on a specific schedule
+	- for example if you want to show a specific Post or Haith you can create a new schedule for Ramadan and select the start and end date range on the schedule page.
+- After you activate this plugin you have access to a new GET RestAPI called `today` following by the date as a parameter like this `wp-json/dif/v1/today/day/month/year`.
+	- this API returns a single daily feed from each type `Hadith` `Ayat` `Names Of Allah` and `Post`.
+	- example:
+		- curl http://localhost:8888/wp-json/dif/v1/today/06/10/2020
+		- the response:
+		```json
+		[
+			{
+				"id": 5,
+				"date": "2020-10-17 19:58:59",
+				"date_gmt": "2020-10-17 19:58:59",
+				"modified": "2020-10-17 19:58:59",
+				"modified_gmt": "2020-10-17 19:58:59",
+				"slug": "ayha-1",
+				"status": "publish",
+				"type": "ayah",
+				"link": "http://localhost:8888/ayah/ayha-1/",
+				"title": {
+				"rendered": "ayha 1"
+				},
+				"content": {
+				"rendered": ""
+				},
+				"excerpt": {
+				"rendered": ""
+				},
+				"author": 1,
+				"featured_image": {
+				"thumbnail": false,
+				"medium": false,
+				"large": false
+				},
+				"sticky": false
+			},
+			{
+				"id": 7,
+				"date": "2020-10-17 19:59:19",
+				"date_gmt": "2020-10-17 19:59:19",
+				"modified": "2020-10-17 19:59:19",
+				"modified_gmt": "2020-10-17 19:59:19",
+				"slug": "hadith-2",
+				"status": "publish",
+				"type": "hadith",
+				"link": "http://localhost:8888/hadith/hadith-2/",
+				"title": {
+				"rendered": "hadith 2"
+				},
+				"content": {
+				"rendered": ""
+				},
+				"excerpt": {
+				"rendered": ""
+				},
+				"author": 1,
+				"featured_image": {
+				"thumbnail": false,
+				"medium": false,
+				"large": false
+				},
+				"sticky": false
+			},
+			{
+				"id": 9,
+				"date": "2020-10-17 19:59:39",
+				"date_gmt": "2020-10-17 19:59:39",
+				"modified": "2020-10-17 19:59:39",
+				"modified_gmt": "2020-10-17 19:59:39",
+				"slug": "name-2",
+				"status": "publish",
+				"type": "names-of-allah",
+				"link": "http://localhost:8888/names-of-allah/name-2/",
+				"title": {
+				"rendered": "name 2"
+				},
+				"content": {
+				"rendered": ""
+				},
+				"excerpt": {
+				"rendered": ""
+				},
+				"author": 1,
+				"featured_image": {
+				"thumbnail": false,
+				"medium": false,
+				"large": false
+				},
+				"sticky": false
+			},
+			{
+				"id": 1,
+				"date": "2020-10-15 11:08:26",
+				"date_gmt": "2020-10-15 11:08:26",
+				"modified": "2020-10-15 11:08:26",
+				"modified_gmt": "2020-10-15 11:08:26",
+				"slug": "hello-world",
+				"status": "publish",
+				"type": "post",
+				"link": "http://localhost:8888/hello-world/",
+				"title": {
+				"rendered": "Hello world!"
+				},
+				"content": {
+				"rendered": "\n<p>Welcome to WordPress. This is your first post. Edit or delete it, then start writing!</p>\n"
+				},
+				"excerpt": {
+				"rendered": ""
+				},
+				"author": 1,
+				"featured_image": {
+				"thumbnail": false,
+				"medium": false,
+				"large": false
+				},
+				"sticky": false
+			}
+		]
+		```
 
-A few notes about the sections above:
 
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
+### Note:
+- The random posts are saved in a cache in order to get the same random sequence for all users daily.
+- If there is no schedule in the selected date range you will see random posts from all types.
 
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
+you can stick a post on the top by checking the `sticky` option inside the post setting.
 
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
-
-e.g.
-
-1. Upload `daily-islamic-feed.php` to the `/wp-content/plugins/` directory
+1. Upload `daily-islamic-feed` directory or clone the repo to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('daily_islamic_feed_hook'); ?>` in your templates
 
-== Frequently Asked Questions ==
+== development ==
+I use to use wp-env in my development so this is fast and awesome way to start fast.
+Note: make sure you have docker
 
-= A question that someone might have =
+1. clone the repo
+2. `cd daily-islamic-feed`
+3. `wp-env start`
+4. now open `http://localhost:8888` 👏🏻
 
-An answer to that question.
-
-= What about foo bar? =
-
-Answer to foo bar dilemma.
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
-
-== Changelog ==
-
-= 1.0 =
-* A change since the previous version.
-* Another change.
-
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
-
-== Upgrade Notice ==
-
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
-
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
-
-== A brief Markdown Example ==
-
-Ordered list:
-
-1. Some feature
-1. Another feature
-1. Something else about the plugin
-
-Unordered list:
-
-* something
-* something else
-* third thing
-
-Here's a link to [WordPress](https://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
-
-[markdown syntax]: https://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
-
-Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up  for **strong**.
-
-`<?php code(); // goes in backticks ?>`
+1. This is the Inspiration menu contains custom post type.
+2. This is the schedule taxonomy under posts.
+3. This is when you add new schedule and selecte show and end date using daterange input.
