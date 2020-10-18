@@ -174,6 +174,19 @@ Note: make sure you have docker
 4. now open `http://localhost:8888` 👏🏻
 
 
+## TODO ##
+1. Add feature image with posts api response.
+2. Limit fields on Hadith, Ayah, and Names
+	1. arabic_text
+	2. english_text
+	3. cover image
+3. Setting page
+	1. Post
+		1. Choos number of post per request
+		2. Excluded categories
+		3. Show/Remove/Add sticky post
+	2. Clear cache
+
 ## Screenshots ##
 
 ### 1. This is the Inspiration menu contains custom post type. ###
