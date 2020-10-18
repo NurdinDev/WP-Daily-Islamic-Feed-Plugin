@@ -68,14 +68,14 @@ class Daily_Islamic_Feed_Taxonomies
 	public function register_taxonomy()
 	{
 		$labels = array(
-			'name'          => __('Schedule', $this->plugin_name),
-			'singular_name' => __('Schedule', $this->plugin_name),
-			'all_items'     => __('All Schedule', $this->plugin_name),
-			'edit_item'     => __('Edit Schedule', $this->plugin_name),
-			'update_item'   => __('Update Schedule', $this->plugin_name),
-			'add_new_item'  => __('Add New Schedule', $this->plugin_name),
-			'new_item_name' => __('New Schedule Name', $this->plugin_name),
-			'menu_name'     => __('Scheduling', $this->plugin_name),
+			'name'          => __('Schedule', $this->plugin_name, 'daily-islamic-feed'),
+			'singular_name' => __('Schedule', $this->plugin_name, 'daily-islamic-feed'),
+			'all_items'     => __('All Schedule', $this->plugin_name, 'daily-islamic-feed'),
+			'edit_item'     => __('Edit Schedule', $this->plugin_name, 'daily-islamic-feed'),
+			'update_item'   => __('Update Schedule', $this->plugin_name, 'daily-islamic-feed'),
+			'add_new_item'  => __('Add New Schedule', $this->plugin_name, 'daily-islamic-feed'),
+			'new_item_name' => __('New Schedule Name', $this->plugin_name, 'daily-islamic-feed'),
+			'menu_name'     => __('Scheduling', $this->plugin_name, 'daily-islamic-feed'),
 		);
 
 		register_taxonomy(

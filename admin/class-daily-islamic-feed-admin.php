@@ -63,7 +63,7 @@ class Daily_Islamic_Feed_Admin
 	public function add_inspiration_menu()
 	{
 		add_menu_page(
-			__('Inspiration', $this->plugin_name),
+			__('Inspiration', $this->plugin_name, 'daily-islamic-feed'),
 			'Inspiration',
 			'manage_options',
 			'inspiration-menu-top-level',
