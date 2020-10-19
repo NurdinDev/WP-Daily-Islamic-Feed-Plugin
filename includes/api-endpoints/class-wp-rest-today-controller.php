@@ -76,7 +76,7 @@ class WP_REST_TODAY_CONTROLLER extends WP_REST_Controller
 		$name = null;
 		$post = null;
 
-		$options = get_option('dif_options');
+		$options = get_option('difeed_options');
 
 		// Get posts by date.
 

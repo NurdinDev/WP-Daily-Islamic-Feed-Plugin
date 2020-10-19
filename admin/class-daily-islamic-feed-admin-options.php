@@ -24,25 +24,25 @@ class Daily_Islamic_Feed_Admin_Options
 {
 
 	public static $POST = array(
-		'per_page' => 'dif_posts_per_page'
+		'per_page' => 'difeed_posts_per_page'
 	);
 
 	public static $HADITH = array(
-		'per_page' => 'dif_hadith_per_page',
-		'bg_gradient_one' => 'dif_hadith_bg_gradient_one',
-		'bg_gradient_two' => 'dif_hadith_bg_gradient_two',
+		'per_page' => 'difeed_hadith_per_page',
+		'bg_gradient_one' => 'difeed_hadith_bg_gradient_one',
+		'bg_gradient_two' => 'difeed_hadith_bg_gradient_two',
 	);
 
 	public static $AYAH = array(
-		'per_page' => 'dif_ayah_per_page',
-		'bg_gradient_one' => 'dif_ayah_bg_gradient_one',
-		'bg_gradient_two' => 'dif_ayah_bg_gradient_two',
+		'per_page' => 'difeed_ayah_per_page',
+		'bg_gradient_one' => 'difeed_ayah_bg_gradient_one',
+		'bg_gradient_two' => 'difeed_ayah_bg_gradient_two',
 	);
 
 	public static $NAMES = array(
-		'per_page' => 'dif_name_per_page',
-		'bg_gradient_one' => 'dif_name_bg_gradient_one',
-		'bg_gradient_two' => 'dif_name_bg_gradient_two',
+		'per_page' => 'difeed_name_per_page',
+		'bg_gradient_one' => 'difeed_name_bg_gradient_one',
+		'bg_gradient_two' => 'difeed_name_bg_gradient_two',
 	);
 
 
@@ -87,18 +87,18 @@ class Daily_Islamic_Feed_Admin_Options
 	 */
 	function daily_islamic_feed_register_settings()
 	{
-		register_setting($this->plugin_name, 'dif_options');
+		register_setting($this->plugin_name, 'difeed_options');
 
 		// Posts settings.
 		add_settings_section('post_settings', 'Post Settings', array($this, 'post_settings_section_text'), $this->plugin_name);
-		add_settings_field(self::$POST['per_page'], 'Posts Per Page',  array($this, 'dif_per_page_input'), $this->plugin_name, 'post_settings',   array(
+		add_settings_field(self::$POST['per_page'], 'Posts Per Page',  array($this, 'difeed_per_page_input'), $this->plugin_name, 'post_settings',   array(
 			'label_for'         => self::$POST['per_page']
 		));
 
 
 		// Hadith
 		add_settings_section('hadith_settings', 'Hadith Settings', array($this, 'hadith_settings_section_text'), $this->plugin_name);
-		add_settings_field(self::$HADITH['per_page'], 'Hadith Per Page',  array($this, 'dif_per_page_input'), $this->plugin_name, 'hadith_settings',   array(
+		add_settings_field(self::$HADITH['per_page'], 'Hadith Per Page',  array($this, 'difeed_per_page_input'), $this->plugin_name, 'hadith_settings',   array(
 			'label_for'         => self::$HADITH['per_page']
 		));
 		add_settings_field(self::$HADITH['bg_gradient_one'], 'First Gradient Color',  array($this, 'hadith_bg_gradient_one'), $this->plugin_name, 'hadith_settings');
@@ -107,7 +107,7 @@ class Daily_Islamic_Feed_Admin_Options
 
 		// Ayah
 		add_settings_section('ayah_settings', 'Ayah Settings', array($this, 'ayah_settings_section_text'), $this->plugin_name);
-		add_settings_field(self::$AYAH['per_page'], 'Ayah Per Page',  array($this, 'dif_per_page_input'), $this->plugin_name, 'ayah_settings',   array(
+		add_settings_field(self::$AYAH['per_page'], 'Ayah Per Page',  array($this, 'difeed_per_page_input'), $this->plugin_name, 'ayah_settings',   array(
 			'label_for'         => self::$AYAH['per_page']
 		));
 		add_settings_field(self::$AYAH['bg_gradient_one'], 'First Gradient Color',  array($this, 'ayah_bg_gradient_one'), $this->plugin_name, 'ayah_settings');
@@ -116,7 +116,7 @@ class Daily_Islamic_Feed_Admin_Options
 
 		// Name Of Allah
 		add_settings_section('name_settings', 'Name Settings', array($this, 'name_settings_section_text'), $this->plugin_name);
-		add_settings_field(self::$NAMES['per_page'], 'Name Per Page',  array($this, 'dif_per_page_input'), $this->plugin_name, 'name_settings',   array(
+		add_settings_field(self::$NAMES['per_page'], 'Name Per Page',  array($this, 'difeed_per_page_input'), $this->plugin_name, 'name_settings',   array(
 			'label_for'         => self::$NAMES['per_page']
 		));
 		add_settings_field(self::$NAMES['bg_gradient_one'], 'First Gradient Color',  array($this, 'name_bg_gradient_one'), $this->plugin_name, 'name_settings');
@@ -151,12 +151,12 @@ class Daily_Islamic_Feed_Admin_Options
 	}
 
 
-	function dif_per_page_input($args)
+	function difeed_per_page_input($args)
 	{
-		$options = get_option('dif_options');
+		$options = get_option('difeed_options');
 		$value = isset($options[$args['label_for']]) ? $options[$args['label_for']] : '1';
 ?>
-		<input type='number' id="<?php echo esc_attr($args['label_for']); ?>" name="dif_options[<?php echo esc_attr($args['label_for']); ?>]" min='1' value='<?php echo $value ?>' />
+		<input type='number' id="<?php echo esc_attr($args['label_for']); ?>" name="difeed_options[<?php echo esc_attr($args['label_for']); ?>]" min='1' value='<?php echo $value ?>' />
 <?php
 	}
 
