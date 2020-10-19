@@ -24,7 +24,7 @@
  * @subpackage Daily_Islamic_Feed/includes
  * @author     Your Name <email@example.com>
  */
-class Daily_Islamic_Feed_Taxonomies
+class DIFeed_Taxonomies
 {
 
 	/**
@@ -49,12 +49,12 @@ class Daily_Islamic_Feed_Taxonomies
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $daily_islamic_feed       The name of this plugin.
+	 * @param      string    $plugin_name       The name of this plugin.
 	 */
-	public function __construct($daily_islamic_feed)
+	public function __construct($plugin_name)
 	{
 
-		$this->plugin_name = $daily_islamic_feed;
+		$this->plugin_name = $plugin_name;
 	}
 
 
@@ -68,19 +68,19 @@ class Daily_Islamic_Feed_Taxonomies
 	public function register_taxonomy()
 	{
 		$labels = array(
-			'name'          => __('Schedule', $this->plugin_name, 'daily-islamic-feed'),
-			'singular_name' => __('Schedule', $this->plugin_name, 'daily-islamic-feed'),
-			'all_items'     => __('All Schedule', $this->plugin_name, 'daily-islamic-feed'),
-			'edit_item'     => __('Edit Schedule', $this->plugin_name, 'daily-islamic-feed'),
-			'update_item'   => __('Update Schedule', $this->plugin_name, 'daily-islamic-feed'),
-			'add_new_item'  => __('Add New Schedule', $this->plugin_name, 'daily-islamic-feed'),
-			'new_item_name' => __('New Schedule Name', $this->plugin_name, 'daily-islamic-feed'),
-			'menu_name'     => __('Scheduling', $this->plugin_name, 'daily-islamic-feed'),
+			'name'          => __('Schedule', $this->plugin_name, 'difeed'),
+			'singular_name' => __('Schedule', $this->plugin_name, 'difeed'),
+			'all_items'     => __('All Schedule', $this->plugin_name, 'difeed'),
+			'edit_item'     => __('Edit Schedule', $this->plugin_name, 'difeed'),
+			'update_item'   => __('Update Schedule', $this->plugin_name, 'difeed'),
+			'add_new_item'  => __('Add New Schedule', $this->plugin_name, 'difeed'),
+			'new_item_name' => __('New Schedule Name', $this->plugin_name, 'difeed'),
+			'menu_name'     => __('Scheduling', $this->plugin_name, 'difeed'),
 		);
 
 		register_taxonomy(
 			self::$SCHEDULE,
-			array('post', Daily_Islamic_Feed_Post_Types::$HADITH, Daily_Islamic_Feed_Post_Types::$AYAH),
+			array('post', DIFeed_Post_Types::$HADITH, DIFeed_Post_Types::$AYAH),
 			array(
 				'hierarchical'          => false,
 				'labels'                => $labels,

@@ -21,7 +21,7 @@
  * @subpackage Daily_Islamic_Feed/includes
  * @author     Your Name <email@example.com>
  */
-class Daily_Islamic_Feed_Loader {
+class DIFeed_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

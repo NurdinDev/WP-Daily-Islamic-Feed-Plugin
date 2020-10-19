@@ -9,7 +9,7 @@ module.exports = function( grunt ) {
 
 		addtextdomain: {
 			options: {
-				textdomain: 'daily-islamic-feed',
+				textdomain: 'difeed',
 			},
 			update_all_domains: {
 				options: {

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Daily Islamic Feed 0.1.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/daily-islamic-feed\n"
-"POT-Creation-Date: 2020-10-18 08:45:45+00:00\n"
+"POT-Creation-Date: 2020-10-19 14:52:54+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,141 +25,145 @@ msgstr ""
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
-#: admin/class-daily-islamic-feed-admin.php:66
+#: admin/class-difeed-admin.php:66
 msgid "Inspiration"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:71
-#: includes/class-daily-islamic-feed-post-types.php:72
+#: admin/partials/difeed-settings.php:26
+msgid "Save Settings"
+msgstr ""
+
+#: includes/class-difeed-post-types.php:71
+#: includes/class-difeed-post-types.php:72
 msgid "Ayah"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:73
-#: includes/class-daily-islamic-feed-post-types.php:74
+#: includes/class-difeed-post-types.php:73
+#: includes/class-difeed-post-types.php:74
 msgid "Add New Ayah"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:75
+#: includes/class-difeed-post-types.php:75
 msgid "New Ayah"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:76
+#: includes/class-difeed-post-types.php:76
 msgid "Edit Ayah"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:77
+#: includes/class-difeed-post-types.php:77
 msgid "View Ayah"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:78
+#: includes/class-difeed-post-types.php:78
 msgid "Ayat"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:79
+#: includes/class-difeed-post-types.php:79
 msgid "Ayah Cover Image"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:80
-#: includes/class-daily-islamic-feed-post-types.php:104
-#: includes/class-daily-islamic-feed-post-types.php:129
+#: includes/class-difeed-post-types.php:80
+#: includes/class-difeed-post-types.php:104
+#: includes/class-difeed-post-types.php:129
 msgid "Set Cover Image"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:81
-#: includes/class-daily-islamic-feed-post-types.php:105
-#: includes/class-daily-islamic-feed-post-types.php:130
+#: includes/class-difeed-post-types.php:81
+#: includes/class-difeed-post-types.php:105
+#: includes/class-difeed-post-types.php:130
 msgid "Remove Cover Image"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:82
-#: includes/class-daily-islamic-feed-post-types.php:106
-#: includes/class-daily-islamic-feed-post-types.php:131
+#: includes/class-difeed-post-types.php:82
+#: includes/class-difeed-post-types.php:106
+#: includes/class-difeed-post-types.php:131
 msgid "Use Cover Image"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:95
-#: includes/class-daily-islamic-feed-post-types.php:96
-#: includes/class-daily-islamic-feed-post-types.php:102
+#: includes/class-difeed-post-types.php:95
+#: includes/class-difeed-post-types.php:96
+#: includes/class-difeed-post-types.php:102
 msgid "Hadith"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:97
-#: includes/class-daily-islamic-feed-post-types.php:98
+#: includes/class-difeed-post-types.php:97
+#: includes/class-difeed-post-types.php:98
 msgid "Add New Hadith"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:99
+#: includes/class-difeed-post-types.php:99
 msgid "New Hadith"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:100
+#: includes/class-difeed-post-types.php:100
 msgid "Edit Hadith"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:101
+#: includes/class-difeed-post-types.php:101
 msgid "View Hadith"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:103
+#: includes/class-difeed-post-types.php:103
 msgid "Hadith Cover Image"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:120
-#: includes/class-daily-islamic-feed-post-types.php:127
+#: includes/class-difeed-post-types.php:120
+#: includes/class-difeed-post-types.php:127
 msgid "Names of Allah"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:121
+#: includes/class-difeed-post-types.php:121
 msgid "Name of Allah"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:122
-#: includes/class-daily-islamic-feed-post-types.php:123
+#: includes/class-difeed-post-types.php:122
+#: includes/class-difeed-post-types.php:123
 msgid "Add New Name"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:124
+#: includes/class-difeed-post-types.php:124
 msgid "New Name"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:125
+#: includes/class-difeed-post-types.php:125
 msgid "Edit Name"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:126
+#: includes/class-difeed-post-types.php:126
 msgid "View Name"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-post-types.php:128
+#: includes/class-difeed-post-types.php:128
 msgid "Name Cover Image"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-taxonomies.php:71
-#: includes/class-daily-islamic-feed-taxonomies.php:72
+#: includes/class-difeed-taxonomies.php:71
+#: includes/class-difeed-taxonomies.php:72
 msgid "Schedule"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-taxonomies.php:73
+#: includes/class-difeed-taxonomies.php:73
 msgid "All Schedule"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-taxonomies.php:74
+#: includes/class-difeed-taxonomies.php:74
 msgid "Edit Schedule"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-taxonomies.php:75
+#: includes/class-difeed-taxonomies.php:75
 msgid "Update Schedule"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-taxonomies.php:76
+#: includes/class-difeed-taxonomies.php:76
 msgid "Add New Schedule"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-taxonomies.php:77
+#: includes/class-difeed-taxonomies.php:77
 msgid "New Schedule Name"
 msgstr ""
 
-#: includes/class-daily-islamic-feed-taxonomies.php:78
+#: includes/class-difeed-taxonomies.php:78
 msgid "Scheduling"
 msgstr ""
 

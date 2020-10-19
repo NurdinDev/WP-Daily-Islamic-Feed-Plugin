@@ -20,7 +20,7 @@
  * @subpackage Daily_Islamic_Feed/includes
  * @author     Your Name <email@example.com>
  */
-class Daily_Islamic_Feed_Custom_Fields
+class DIFeed_Custom_Fields
 {
 
 	/**
@@ -48,10 +48,10 @@ class Daily_Islamic_Feed_Custom_Fields
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version       The version of this plugin.
 	 */
-	public function __construct($daily_islamic_feed, $version)
+	public function __construct($plugin_name, $version)
 	{
 
-		$this->plugin_name = $daily_islamic_feed;
+		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 	}
 

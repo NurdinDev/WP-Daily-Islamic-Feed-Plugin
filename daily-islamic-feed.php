@@ -6,7 +6,7 @@
  * Description:     PLUGIN DESCRIPTION HERE
  * Author:          YOUR NAME HERE
  * Author URI:      YOUR SITE HERE
- * Text Domain:     daily-islamic-feed
+ * Text Domain:     difeed
  * Domain Path:     /languages
  * Version:         0.1.0
  *
@@ -26,27 +26,27 @@ if (!defined('WPINC')) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define('DAILY_ISLAMIC_FEED_VERSION', '1.0.0');
-define('PLUGIN_DOMAIN', 'daily_islamic_feed');
+define('DIFEED_VERSION', '1.0.0');
+define('DIFEED_PLUGIN_DOMAIN', 'difeed');
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-daily-islamic-feed-activator.php
+ * This action is documented in includes/class-difeed-activator.php
  */
 function activate_islamic_feed()
 {
-	require_once plugin_dir_path(__FILE__) . 'includes/class-daily-islamic-feed-activator.php';
-	Daily_Islamic_Feed_Activator::activate();
+	require_once plugin_dir_path(__FILE__) . 'includes/class-difeed-activator.php';
+	DIFeed_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-daily-islamic-feed-deactivator.php
+ * This action is documented in includes/class-difeed-deactivator.php
  */
 function deactivate_islamic_feed()
 {
-	require_once plugin_dir_path(__FILE__) . 'includes/class-daily-islamic-feed-deactivator.php';
-	Daily_Islamic_Feed_Deactivator::deactivate();
+	require_once plugin_dir_path(__FILE__) . 'includes/class-difeed-deactivator.php';
+	DIFeed_Deactivator::deactivate();
 }
 
 register_activation_hook(__FILE__, 'activate_islamic_feed');
@@ -56,7 +56,7 @@ register_deactivation_hook(__FILE__, 'deactivate_islamic_feed');
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path(__FILE__) . 'includes/class-daily-islamic-feed.php';
+require plugin_dir_path(__FILE__) . 'includes/class-difeed.php';
 
 /**
  * Begins execution of the plugin.

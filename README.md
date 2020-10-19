@@ -33,10 +33,10 @@ This plugin adds:
 - `Haith` `Ayat` and `Names Of Allah` as a new post type under the Inspiration menu.
 - `schedule` as a taxonomy to group posts on a specific schedule
 	- for example if you want to show a specific Post or Haith you can create a new schedule for Ramadan and select the start and end date range on the schedule page.
-- After you activate this plugin you have access to a new GET RestAPI called `today` following by the date as a parameter like this `wp-json/dif/v1/today/day/month/year`.
+- After you activate this plugin you have access to a new GET RestAPI called `today` following by the date as a parameter like this `wp-json/difeed/v1/today/day/month/year`.
 	- this API returns a single daily feed from each type `Hadith` `Ayat` `Names Of Allah` and `Post`.
 	- example:
-		- curl http://localhost:8888/wp-json/dif/v1/today/06/10/2020
+		- curl http://localhost:8888/wp-json/difeed/v1/today/06/10/2020
 		- the response:
 		```json
 		[

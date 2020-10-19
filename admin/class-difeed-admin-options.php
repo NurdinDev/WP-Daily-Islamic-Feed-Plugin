@@ -20,7 +20,7 @@
  * @subpackage Daily_Islamic_Feed/admin
  * @author     Your Name <email@example.com>
  */
-class Daily_Islamic_Feed_Admin_Options
+class DIFeed_Admin_Options
 {
 
 	public static $POST = array(
@@ -53,7 +53,7 @@ class Daily_Islamic_Feed_Admin_Options
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $daily_islamic_feed    The ID of this plugin.
+	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
 	private $plugin_name;
 
@@ -70,13 +70,13 @@ class Daily_Islamic_Feed_Admin_Options
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $daily_islamic_feed       The name of this plugin.
+	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct($daily_islamic_feed, $version)
+	public function __construct($plugin_name, $version)
 	{
 
-		$this->plugin_name = $daily_islamic_feed;
+		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 	}
 
@@ -85,7 +85,7 @@ class Daily_Islamic_Feed_Admin_Options
 	 *
 	 * @return void
 	 */
-	function daily_islamic_feed_register_settings()
+	function difeed_register_settings()
 	{
 		register_setting($this->plugin_name, 'difeed_options');
 

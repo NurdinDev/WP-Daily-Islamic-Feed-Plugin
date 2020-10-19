@@ -24,7 +24,7 @@
  * @subpackage Daily_Islamic_Feed/includes
  * @author     Your Name <email@example.com>
  */
-class Daily_Islamic_Feed_i18n {
+class DIFeed_i18n {
 
 	/**
 	 * Load the plugin text domain for translation.
@@ -34,7 +34,7 @@ class Daily_Islamic_Feed_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'daily_islamic_feed',
+			'difeed',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

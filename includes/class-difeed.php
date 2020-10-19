@@ -36,7 +36,7 @@ class Daily_Islamic_Feed
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Daily_Islamic_Feed_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      DIFeed_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -70,15 +70,15 @@ class Daily_Islamic_Feed
 	public function __construct()
 	{
 		if (defined('DAILY_ISLAMIC_FEED_VERSION')) {
-			$this->version = DAILY_ISLAMIC_FEED_VERSION;
+			$this->version = DIFEED_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
 
 		if (defined('PLUGIN_DOMAIN')) {
-			$this->plugin_name = PLUGIN_DOMAIN;
+			$this->plugin_name = DIFEED_PLUGIN_DOMAIN;
 		} else {
-			$this->plugin_name = 'daily-islamic-feed';
+			$this->plugin_name = 'difeed';
 		}
 
 		$this->load_dependencies();
@@ -96,10 +96,10 @@ class Daily_Islamic_Feed
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Daily_Islamic_Feed_Loader. Orchestrates the hooks of the plugin.
-	 * - Daily_Islamic_Feed_i18n. Defines internationalization functionality.
-	 * - Daily_Islamic_Feed_Admin. Defines all hooks for the admin area.
-	 * - Daily_Islamic_Feed_Public. Defines all hooks for the public side of the site.
+	 * - DIFeed_Loader. Orchestrates the hooks of the plugin.
+	 * - DIFeed_i18n. Defines internationalization functionality.
+	 * - DIFeed_Admin. Defines all hooks for the admin area.
+	 * - DIFeed_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -114,44 +114,44 @@ class Daily_Islamic_Feed
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-daily-islamic-feed-loader.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-difeed-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-daily-islamic-feed-i18n.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-difeed-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-daily-islamic-feed-admin.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-difeed-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin options area.
 		 */
-		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-daily-islamic-feed-admin-options.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-difeed-admin-options.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-daily-islamic-feed-public.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-difeed-public.php';
 
-		$this->loader = new Daily_Islamic_Feed_Loader();
+		$this->loader = new DIFeed_Loader();
 
 
-		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-daily-islamic-feed-post-types.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-difeed-post-types.php';
 
-		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-daily-islamic-feed-taxonomies.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-difeed-taxonomies.php';
 
-		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-daily-islamic-feed-custom-fields.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-difeed-custom-fields.php';
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Daily_Islamic_Feed_i18n class in order to set the domain and to register the hook
+	 * Uses the DIFeed_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -160,12 +160,12 @@ class Daily_Islamic_Feed
 	private function set_locale()
 	{
 
-		$plugin_i18n = new Daily_Islamic_Feed_i18n();
+		$plugin_i18n = new DIFeed_i18n();
 
 		$this->loader->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
 	}
 	/**
-	 * Regsiter the custom posts we defined on Daily_Islamic_Feed_Post_Types
+	 * Regsiter the custom posts we defined on DIFeed_Post_Types
 	 *
 	 *
 	 * @since    1.0.0
@@ -174,7 +174,7 @@ class Daily_Islamic_Feed
 	private function register_post_types()
 	{
 
-		$plugin_posts = new Daily_Islamic_Feed_Post_Types($this->get_plugin_name());
+		$plugin_posts = new DIFeed_Post_Types($this->get_plugin_name());
 
 		$this->loader->add_action('init', $plugin_posts, 'register_post_types');
 
@@ -183,7 +183,7 @@ class Daily_Islamic_Feed
 	}
 
 	/**
-	 * Regsiter taxonomy we defined on Daily_Islamic_Feed_Schedule
+	 * Regsiter taxonomy we defined on DIFeed_Schedule
 	 *
 	 *
 	 * @since    1.0.0
@@ -191,12 +191,12 @@ class Daily_Islamic_Feed
 	 */
 	private function register_taxonomy()
 	{
-		$plugin_taxonomies = new Daily_Islamic_Feed_Taxonomies($this->get_plugin_name());
+		$plugin_taxonomies = new DIFeed_Taxonomies($this->get_plugin_name());
 		$this->loader->add_action('init', $plugin_taxonomies, 'register_taxonomy');
 	}
 
 	/**
-	 * Regsiter taxonomy we defined on Daily_Islamic_Feed_Custom_Fields
+	 * Regsiter taxonomy we defined on DIFeed_Custom_Fields
 	 *
 	 *
 	 * @since    1.0.0
@@ -204,15 +204,15 @@ class Daily_Islamic_Feed
 	 */
 	private function register_fields()
 	{
-		$plugin_fields = new Daily_Islamic_Feed_Custom_Fields($this->get_plugin_name(), $this->get_version());
+		$plugin_fields = new DIFeed_Custom_Fields($this->get_plugin_name(), $this->get_version());
 
 		// add custom field for start and end date on schedule taxonomy
 
 
-		$this->loader->add_action(Daily_Islamic_Feed_Taxonomies::$SCHEDULE . '_add_form_fields', $plugin_fields, 'schedule_add_field', 10, 2);
-		$this->loader->add_action(Daily_Islamic_Feed_Taxonomies::$SCHEDULE . '_edit_form_fields', $plugin_fields, 'schedule_edit_field', 10);
-		$this->loader->add_action('edited_' . Daily_Islamic_Feed_Taxonomies::$SCHEDULE, $plugin_fields, 'schedule_save_field');
-		$this->loader->add_action('create_' . Daily_Islamic_Feed_Taxonomies::$SCHEDULE, $plugin_fields, 'schedule_save_field');
+		$this->loader->add_action(DIFeed_Taxonomies::$SCHEDULE . '_add_form_fields', $plugin_fields, 'schedule_add_field', 10, 2);
+		$this->loader->add_action(DIFeed_Taxonomies::$SCHEDULE . '_edit_form_fields', $plugin_fields, 'schedule_edit_field', 10);
+		$this->loader->add_action('edited_' . DIFeed_Taxonomies::$SCHEDULE, $plugin_fields, 'schedule_save_field');
+		$this->loader->add_action('create_' . DIFeed_Taxonomies::$SCHEDULE, $plugin_fields, 'schedule_save_field');
 	}
 
 	/**
@@ -225,7 +225,7 @@ class Daily_Islamic_Feed
 	private function define_admin_hooks()
 	{
 
-		$plugin_admin = new Daily_Islamic_Feed_Admin($this->get_plugin_name(), $this->get_version());
+		$plugin_admin = new DIFeed_Admin($this->get_plugin_name(), $this->get_version());
 
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
@@ -244,9 +244,9 @@ class Daily_Islamic_Feed
 	private function define_admin_options_hooks()
 	{
 
-		$plugin_admin = new Daily_Islamic_Feed_Admin_Options($this->get_plugin_name(), $this->get_version());
+		$plugin_admin = new DIFeed_Admin_Options($this->get_plugin_name(), $this->get_version());
 
-		$this->loader->add_action('admin_init',  $plugin_admin, 'daily_islamic_feed_register_settings');
+		$this->loader->add_action('admin_init',  $plugin_admin, 'difeed_register_settings');
 	}
 
 	/**
@@ -259,7 +259,7 @@ class Daily_Islamic_Feed
 	private function define_public_hooks()
 	{
 
-		$plugin_public = new Daily_Islamic_Feed_Public($this->get_plugin_name(), $this->get_version());
+		$plugin_public = new DIFeed_Public($this->get_plugin_name(), $this->get_version());
 
 		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
 		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
@@ -292,7 +292,7 @@ class Daily_Islamic_Feed
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Daily_Islamic_Feed_Loader    Orchestrates the hooks of the plugin.
+	 * @return    DIFeed_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader()
 	{

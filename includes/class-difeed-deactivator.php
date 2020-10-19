@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Fired during plugin activation
+ * Fired during plugin deactivation
  *
  * @link       http://example.com
  * @since      1.0.0
@@ -11,16 +11,16 @@
  */
 
 /**
- * Fired during plugin activation.
+ * Fired during plugin deactivation.
  *
- * This class defines all code necessary to run during the plugin's activation.
+ * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
  * @package    Daily_Islamic_Feed
  * @subpackage Daily_Islamic_Feed/includes
  * @author     Your Name <email@example.com>
  */
-class Daily_Islamic_Feed_Activator {
+class DIFeed_Deactivator {
 
 	/**
 	 * Short Description. (use period)
@@ -29,7 +29,7 @@ class Daily_Islamic_Feed_Activator {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function activate() {
+	public static function deactivate() {
 
 	}
 
