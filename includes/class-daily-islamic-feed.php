@@ -84,6 +84,7 @@ class Daily_Islamic_Feed
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
+		$this->define_admin_options_hooks();
 		$this->define_public_hooks();
 		$this->register_post_types();
 		$this->register_taxonomy();
@@ -125,6 +126,11 @@ class Daily_Islamic_Feed
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-daily-islamic-feed-admin.php';
+
+		/**
+		 * The class responsible for defining all actions that occur in the admin options area.
+		 */
+		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-daily-islamic-feed-admin-options.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
@@ -171,6 +177,9 @@ class Daily_Islamic_Feed
 		$plugin_posts = new Daily_Islamic_Feed_Post_Types($this->get_plugin_name());
 
 		$this->loader->add_action('init', $plugin_posts, 'register_post_types');
+
+		// Disable Gutenberg editor from those post types.
+		$this->loader->add_filter('use_block_editor_for_post_type', $plugin_posts, 'disable_gutenberg', 10, 2);
 	}
 
 	/**
@@ -223,6 +232,21 @@ class Daily_Islamic_Feed
 
 		$this->loader->add_action('admin_menu',  $plugin_admin, 'add_inspiration_menu');
 		$this->loader->add_action('admin_menu',  $plugin_admin, 'add_inspiration_settings_submenu');
+	}
+
+	/**
+	 * Register all of the hooks related to the admin area functionality
+	 * of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_admin_options_hooks()
+	{
+
+		$plugin_admin = new Daily_Islamic_Feed_Admin_Options($this->get_plugin_name(), $this->get_version());
+
+		$this->loader->add_action('admin_init',  $plugin_admin, 'daily_islamic_feed_register_settings');
 	}
 
 	/**

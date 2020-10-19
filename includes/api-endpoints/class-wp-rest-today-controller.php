@@ -76,6 +76,8 @@ class WP_REST_TODAY_CONTROLLER extends WP_REST_Controller
 		$name = null;
 		$post = null;
 
+		$options = get_option('dif_options');
+
 		// Get posts by date.
 
 		$schedule_term = $this->get_schedule_name_by_day($date);
@@ -89,7 +91,7 @@ class WP_REST_TODAY_CONTROLLER extends WP_REST_Controller
 				if (empty($hadith)) {
 
 					// get random one in case no spicific hadith in this day.
-					$hadith = $this->get_random_post(Daily_Islamic_Feed_Post_Types::$HADITH);
+					$hadith = $this->get_random_post(Daily_Islamic_Feed_Post_Types::$HADITH, $options[Daily_Islamic_Feed_Admin_Options::$HADITH['per_page']]);
 				}
 
 				// get ayah under term.
@@ -97,7 +99,7 @@ class WP_REST_TODAY_CONTROLLER extends WP_REST_Controller
 				if (empty($ayah)) {
 
 					// get random one in case no spicific ayah in this day.
-					$ayah = $this->get_random_post(Daily_Islamic_Feed_Post_Types::$AYAH);
+					$ayah = $this->get_random_post(Daily_Islamic_Feed_Post_Types::$AYAH, $options[Daily_Islamic_Feed_Admin_Options::$AYAH['per_page']]);
 				}
 
 				// get ayah under term.
@@ -105,7 +107,7 @@ class WP_REST_TODAY_CONTROLLER extends WP_REST_Controller
 				if (empty($post)) {
 
 					// get random one in case no spicific post in this day.
-					$post = $this->get_random_post();
+					$post = $this->get_random_post('post', $options[Daily_Islamic_Feed_Admin_Options::$POST['per_page']]);
 				}
 
 				// get ayah under term.
@@ -113,14 +115,14 @@ class WP_REST_TODAY_CONTROLLER extends WP_REST_Controller
 				if (empty($name)) {
 
 					// get random one in case no spicific name in this day.
-					$name = $this->get_random_post();
+					$name = $this->get_random_post('post', $options[Daily_Islamic_Feed_Admin_Options::$POST['per_page']]);
 				}
 			}
 		} else {
-			$ayah   = $this->get_random_post(Daily_Islamic_Feed_Post_Types::$AYAH);
-			$hadith = $this->get_random_post(Daily_Islamic_Feed_Post_Types::$HADITH);
-			$name   = $this->get_random_post(Daily_Islamic_Feed_Post_Types::$NAMES);
-			$post   = $this->get_random_post();
+			$ayah   = $this->get_random_post(Daily_Islamic_Feed_Post_Types::$AYAH, $options[Daily_Islamic_Feed_Admin_Options::$AYAH['per_page']]);
+			$hadith = $this->get_random_post(Daily_Islamic_Feed_Post_Types::$HADITH, $options[Daily_Islamic_Feed_Admin_Options::$HADITH['per_page']]);
+			$name   = $this->get_random_post(Daily_Islamic_Feed_Post_Types::$NAMES, $options[Daily_Islamic_Feed_Admin_Options::$NAMES['per_page']]);
+			$post   = $this->get_random_post('post', $options[Daily_Islamic_Feed_Admin_Options::$POST['per_page']]);
 		}
 
 
