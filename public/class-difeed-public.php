@@ -110,9 +110,9 @@ class DIFeed_Public
 	public function register_rest_routes()
 	{
 
-		require_once plugin_dir_path(__DIR__) . 'includes/api-endpoints/class-wp-rest-today-controller.php';
+		require_once plugin_dir_path(__DIR__) . 'includes/api-endpoints/class-difeed-rest-today-controller.php';
 
-		$controller = new WP_REST_TODAY_CONTROLLER($this->plugin_name, $this->version);
+		$controller = new DIFEED_REST_TODAY_CONTROLLER($this->plugin_name, $this->version);
 
 		if (is_subclass_of($controller, 'WP_REST_Controller')) {
 			$controller->register_routes();
