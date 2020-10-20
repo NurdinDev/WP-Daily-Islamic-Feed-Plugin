@@ -84,7 +84,7 @@ class DIFeed_Post_Types
 			'public'       => true,
 			'show_in_rest' => true,
 			'menu_icon'    => 'dashicons-building',
-			'support'      => array('title', 'thumbnail', 'custom-fields'),
+			'supports'      => array( 'title', 'author', 'thumbnail', 'revisions', 'custom-fields', ),
 			'show_in_menu' => 'inspiration-menu-top-level',
 			'taxonomies'   => array('category', 'post_tag', 'schedule')
 		));
@@ -108,7 +108,7 @@ class DIFeed_Post_Types
 			'public'       => true,
 			'show_in_rest' => true,
 			'menu_icon'    => 'dashicons-building',
-			'support'      => array('title', 'thumbnail'),
+			'supports'      => array( 'title', 'author', 'thumbnail', 'revisions', 'custom-fields', ),
 			'show_in_menu' => 'inspiration-menu-top-level',
 			'taxonomies'   => array('category', 'post_tag', 'schedule'),
 		));
@@ -133,23 +133,8 @@ class DIFeed_Post_Types
 			'public'       => true,
 			'show_in_rest' => true,
 			'menu_icon'    => 'dashicons-building',
-			'support'      => array('title', 'thumbnail'),
+			'supports'      => array( 'title', 'author', 'thumbnail', 'revisions', 'custom-fields', ),
 			'show_in_menu' => 'inspiration-menu-top-level'
 		));
-	}
-
-
-	function disable_gutenberg($current_status, $post_type)
-	{
-
-		// Disabled post types
-		$disabled_post_types = array(self::$NAMES, self::$HADITH, self::$AYAH);
-
-		// Change $can_edit to false for any post types in the disabled post types array
-		if (in_array($post_type, $disabled_post_types, true)) {
-			$current_status = false;
-		}
-
-		return $current_status;
 	}
 }

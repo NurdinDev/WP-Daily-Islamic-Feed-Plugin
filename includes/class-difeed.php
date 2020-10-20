@@ -177,9 +177,6 @@ class Daily_Islamic_Feed
 		$plugin_posts = new DIFeed_Post_Types($this->get_plugin_name());
 
 		$this->loader->add_action('init', $plugin_posts, 'register_post_types');
-
-		// Disable Gutenberg editor from those post types.
-		$this->loader->add_filter('use_block_editor_for_post_type', $plugin_posts, 'disable_gutenberg', 10, 2);
 	}
 
 	/**
@@ -207,8 +204,6 @@ class Daily_Islamic_Feed
 		$plugin_fields = new DIFeed_Custom_Fields($this->get_plugin_name(), $this->get_version());
 
 		// add custom field for start and end date on schedule taxonomy
-
-
 		$this->loader->add_action(DIFeed_Taxonomies::$SCHEDULE . '_add_form_fields', $plugin_fields, 'schedule_add_field', 10, 2);
 		$this->loader->add_action(DIFeed_Taxonomies::$SCHEDULE . '_edit_form_fields', $plugin_fields, 'schedule_edit_field', 10);
 		$this->loader->add_action('edited_' . DIFeed_Taxonomies::$SCHEDULE, $plugin_fields, 'schedule_save_field');
