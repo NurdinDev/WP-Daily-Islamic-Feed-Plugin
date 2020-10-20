@@ -84,9 +84,9 @@ class DIFeed_Post_Types
 			'public'       => true,
 			'show_in_rest' => true,
 			'menu_icon'    => 'dashicons-building',
-			'supports'      => array( 'title', 'author', 'thumbnail', 'revisions', 'custom-fields', ),
+			'supports'      => array( 'title', 'author', 'thumbnail', 'revisions', 'editor', 'custom-fields', ),
 			'show_in_menu' => 'inspiration-menu-top-level',
-			'taxonomies'   => array('category', 'post_tag', 'schedule')
+			'taxonomies'   => array('schedule')
 		));
 
 		// Hadit Post Type.
@@ -108,9 +108,9 @@ class DIFeed_Post_Types
 			'public'       => true,
 			'show_in_rest' => true,
 			'menu_icon'    => 'dashicons-building',
-			'supports'      => array( 'title', 'author', 'thumbnail', 'revisions', 'custom-fields', ),
+			'supports'      => array( 'title', 'author', 'thumbnail', 'revisions', 'editor',  'custom-fields', ),
 			'show_in_menu' => 'inspiration-menu-top-level',
-			'taxonomies'   => array('category', 'post_tag', 'schedule'),
+			'taxonomies'   => array('schedule'),
 		));
 
 
@@ -133,7 +133,7 @@ class DIFeed_Post_Types
 			'public'       => true,
 			'show_in_rest' => true,
 			'menu_icon'    => 'dashicons-building',
-			'supports'      => array( 'title', 'author', 'thumbnail', 'revisions', 'custom-fields', ),
+			'supports'      => array( 'title', 'author', 'thumbnail', 'revisions', 'editor', 'custom-fields', ),
 			'show_in_menu' => 'inspiration-menu-top-level'
 		));
 	}
