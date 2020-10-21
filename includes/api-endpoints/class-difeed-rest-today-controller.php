@@ -256,7 +256,7 @@ class DIFEED_REST_TODAY_CONTROLLER extends WP_REST_Controller
         if (empty($post_cache)) {
             $post_query = new WP_Query(
                 array(
-                    'posts_per_page' => $count,
+                    'posts_per_page' => isset($count) ? $count : 1,
                     'post_type' => $type,
                     'post_status' => 'publish',
                     'ignore_sticky_posts' => true,
