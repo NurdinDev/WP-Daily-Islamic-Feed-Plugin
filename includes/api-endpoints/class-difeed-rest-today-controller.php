@@ -12,13 +12,13 @@ class DIFEED_REST_TODAY_CONTROLLER extends WP_REST_Controller
      */
     private $plugin_name;
     /**
-     * The version of this plugin.
+     * The date that send with request.
      *
      * @since    1.0.0
      * @access   private
-     * @var      string $version The version of this plugin.
+     * @var      string $date The date that send with request.
      */
-    private $version;
+    private $date;
 
     /**
      * Initialize the class and set its properties.
@@ -30,7 +30,7 @@ class DIFEED_REST_TODAY_CONTROLLER extends WP_REST_Controller
     {
 
         $this->plugin_name = $plugin_name;
-        $this->version = $version;
+        $this->date = '';
     }
 
     /**
@@ -72,7 +72,7 @@ class DIFEED_REST_TODAY_CONTROLLER extends WP_REST_Controller
         $items = array();
         $data = array();
         $params = $request->get_params();
-        $date = $params['year'] . $params['month'] . $params['day'];
+        $this->date = $params['year'] . $params['month'] . $params['day'];
 
         $hadith = null;
         $ayah = null;
@@ -83,7 +83,7 @@ class DIFEED_REST_TODAY_CONTROLLER extends WP_REST_Controller
 
         // Get posts by date.
 
-        $schedule_term = $this->get_schedule_name_by_day($date);
+        $schedule_term = $this->get_schedule_name_by_day($this->date);
 
         // if found schedule term for this day.
         if (!empty($schedule_term)) {
@@ -250,10 +250,9 @@ class DIFEED_REST_TODAY_CONTROLLER extends WP_REST_Controller
      */
     private function get_random_post($type = 'post', $count = 1)
     {
-        $cache = $this->plugin_name . '_' . $type;
-        $post_cache = wp_cache_get($cache);
-        $post_random_item = null;
-        if (empty($post_cache)) {
+        $cache = $this->plugin_name . '_' . str_replace('-', '_', $type) . '_' . $this->date;
+        $post_random_item = $post_query = get_transient($cache);
+        if (false === $post_random_item) {
             $post_query = new WP_Query(
                 array(
                     'posts_per_page' => isset($count) ? $count : 1,
@@ -264,9 +263,9 @@ class DIFEED_REST_TODAY_CONTROLLER extends WP_REST_Controller
                 )
             );
             $post_random_item = $post_query->get_posts();
-            wp_cache_set($cache, $post_random_item);
-        } else {
-            $post_random_item = $post_cache;
+
+            // Put the results in a transient. Expire after 24 hours.
+            set_transient($cache, $post_random_item, 24 * HOUR_IN_SECONDS);
         }
 
         return $post_random_item;
