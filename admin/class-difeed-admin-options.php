@@ -24,25 +24,23 @@ class DIFeed_Admin_Options
 {
 
 	public static $POST = array(
-		'per_page' => 'difeed_posts_per_page'
+		'per_page' => 'difeed_posts_per_page',
+		'style' => 'diffed_post_style'
 	);
 
 	public static $HADITH = array(
 		'per_page' => 'difeed_hadith_per_page',
-		'bg_gradient_one' => 'difeed_hadith_bg_gradient_one',
-		'bg_gradient_two' => 'difeed_hadith_bg_gradient_two',
+		'style' => 'diffed_hadith_style'
 	);
 
 	public static $AYAH = array(
 		'per_page' => 'difeed_ayah_per_page',
-		'bg_gradient_one' => 'difeed_ayah_bg_gradient_one',
-		'bg_gradient_two' => 'difeed_ayah_bg_gradient_two',
+		'style' => 'diffed_ayah_style'
 	);
 
 	public static $NAMES = array(
 		'per_page' => 'difeed_name_per_page',
-		'bg_gradient_one' => 'difeed_name_bg_gradient_one',
-		'bg_gradient_two' => 'difeed_name_bg_gradient_two',
+		'style' => 'diffed_names_style'
 	);
 
 
@@ -94,6 +92,9 @@ class DIFeed_Admin_Options
 		add_settings_field(self::$POST['per_page'], 'Posts Per Page',  array($this, 'difeed_per_page_input'), $this->plugin_name, 'post_settings',   array(
 			'label_for'         => self::$POST['per_page']
 		));
+		add_settings_field(self::$POST['style'], 'Card Style',  array($this, 'post_style'), $this->plugin_name, 'post_settings', array(
+			'label_for' => self::$POST['style']
+		));
 
 
 		// Hadith
@@ -101,8 +102,9 @@ class DIFeed_Admin_Options
 		add_settings_field(self::$HADITH['per_page'], 'Hadith Per Page',  array($this, 'difeed_per_page_input'), $this->plugin_name, 'hadith_settings',   array(
 			'label_for'         => self::$HADITH['per_page']
 		));
-		add_settings_field(self::$HADITH['bg_gradient_one'], 'First Gradient Color',  array($this, 'hadith_bg_gradient_one'), $this->plugin_name, 'hadith_settings');
-		add_settings_field(self::$HADITH['bg_gradient_two'], 'Second Gradient Color',  array($this, 'hadith_bg_gradient_two'), $this->plugin_name, 'hadith_settings');
+		add_settings_field(self::$HADITH['style'], 'Card Style',  array($this, 'hadith_style'), $this->plugin_name, 'hadith_settings', array(
+			'label_for' => self::$HADITH['style']
+		));
 
 
 		// Ayah
@@ -110,18 +112,21 @@ class DIFeed_Admin_Options
 		add_settings_field(self::$AYAH['per_page'], 'Ayah Per Page',  array($this, 'difeed_per_page_input'), $this->plugin_name, 'ayah_settings',   array(
 			'label_for'         => self::$AYAH['per_page']
 		));
-		add_settings_field(self::$AYAH['bg_gradient_one'], 'First Gradient Color',  array($this, 'ayah_bg_gradient_one'), $this->plugin_name, 'ayah_settings');
-		add_settings_field(self::$AYAH['bg_gradient_two'], 'Second Gradient Color',  array($this, 'ayah_bg_gradient_two'), $this->plugin_name, 'ayah_settings');
+		add_settings_field(self::$AYAH['style'], 'Card Style',  array($this, 'ayah_style'), $this->plugin_name, 'ayah_settings', array(
+			'label_for' => self::$AYAH['style']
+		));
 
 
 		// Name Of Allah
-		add_settings_section('name_settings', 'Name Settings', array($this, 'name_settings_section_text'), $this->plugin_name);
-		add_settings_field(self::$NAMES['per_page'], 'Name Per Page',  array($this, 'difeed_per_page_input'), $this->plugin_name, 'name_settings',   array(
+		add_settings_section('names_settings', 'Names Of Allah Settings', array($this, 'name_settings_section_text'), $this->plugin_name);
+		add_settings_field(self::$NAMES['per_page'], 'Name Per Page',  array($this, 'difeed_per_page_input'), $this->plugin_name, 'names_settings',   array(
 			'label_for'         => self::$NAMES['per_page']
 		));
-		add_settings_field(self::$NAMES['bg_gradient_one'], 'First Gradient Color',  array($this, 'name_bg_gradient_one'), $this->plugin_name, 'name_settings');
-		add_settings_field(self::$NAMES['bg_gradient_two'], 'Second Gradient Color',  array($this, 'name_bg_gradient_two'), $this->plugin_name, 'name_settings');
+		add_settings_field(self::$NAMES['style'], 'Card Style',  array($this, 'names_style'), $this->plugin_name, 'names_settings', array(
+			'label_for' => self::$NAMES['style']
+		));
 	}
+
 
 
 	function post_settings_section_text()
@@ -160,29 +165,24 @@ class DIFeed_Admin_Options
 <?php
 	}
 
-	function hadith_bg_gradient_one()
+	function post_style($args)
 	{
-		echo 'Content here';
+		$options = get_option('difeed_options');
+		$value = isset($options[$args['label_for']]) ? $options[$args['label_for']] : '';
+		echo '<textarea class="fancy-textarea">' . esc_textarea($value) . '</textarea>';
 	}
-	function hadith_bg_gradient_two()
+	function hadith_style($args)
 	{
-		echo 'Content here';
-	}
-
-	function ayah_bg_gradient_one()
-	{
-		echo 'Content here';
-	}
-	function ayah_bg_gradient_two()
-	{
-		echo 'Content here';
+		$options = get_option('difeed_options');
+		$value = isset($options[$args['label_for']]) ? $options[$args['label_for']] : '';
+		echo '<textarea class="fancy-textarea">' . esc_textarea($value) . '</textarea>';
 	}
 
-	function name_bg_gradient_one()
+	function ayah_style($args)
 	{
 		echo 'Content here';
 	}
-	function name_bg_gradient_two()
+	function names_style($args)
 	{
 		echo 'Content here';
 	}

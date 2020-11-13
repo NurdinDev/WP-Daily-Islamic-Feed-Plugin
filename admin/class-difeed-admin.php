@@ -154,4 +154,19 @@ class DIFeed_Admin
 
 		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/difeed-admin.js', array('jquery'), $this->version, false);
 	}
+
+	public function admin_options()
+	{
+		$options = new DIFeed_Admin_Options($this->plugin_name, $this->version);
+		return $options->difeed_register_settings();
+	}
+
+	function codemirror_enqueue_scripts($hook)
+	{
+		$cm_settings['codeEditor'] = wp_enqueue_code_editor(array('type' => 'text/css'));
+		wp_localize_script('jquery', 'cm_settings', $cm_settings);
+
+		wp_enqueue_script('wp-theme-plugin-editor');
+		wp_enqueue_style('wp-codemirror');
+	}
 }
