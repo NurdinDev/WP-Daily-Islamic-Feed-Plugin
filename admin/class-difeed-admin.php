@@ -9,17 +9,6 @@
  * @package    Daily_Islamic_Feed
  * @subpackage Daily_Islamic_Feed/admin
  */
-
-/**
- * The admin-specific functionality of the plugin.
- *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the admin-specific stylesheet and JavaScript.
- *
- * @package    Daily_Islamic_Feed
- * @subpackage Daily_Islamic_Feed/admin
- * @author     Your Name <email@example.com>
- */
 class DIFeed_Admin
 {
 

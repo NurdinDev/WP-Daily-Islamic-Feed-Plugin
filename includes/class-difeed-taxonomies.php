@@ -1,19 +1,6 @@
 <?php
 
 /**
- * Register Custom Schedule Taxonomy
- *
- * you can schedule posts by grouping them in a schedule taxonomy
- * by choosing the start and end date for each schedule
- *
- * @link       http://example.com
- * @since      1.0.0
- *
- * @package    Daily_Islamic_Feed
- * @subpackage Daily_Islamic_Feed/includes
- */
-
-/**
  * Register Custom Post Types.
  *
  * you can schedule posts by grouping them in a schedule taxonomy
@@ -49,14 +36,13 @@ class DIFeed_Taxonomies
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of this plugin.
+	 * @param      string $plugin_name       The name of this plugin.
 	 */
 	public function __construct($plugin_name)
 	{
 
 		$this->plugin_name = $plugin_name;
 	}
-
 
 	/**
 	 * Register Schedule taxonomy

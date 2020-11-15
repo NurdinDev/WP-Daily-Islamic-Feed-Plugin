@@ -1,18 +1,6 @@
 <?php
 
 /**
- * Register Custom Post Types
- *
- * Add extra posts types for Islamic feed contains Hadith, Ayat, and Name-of-Allah posts
- *
- * @link       http://example.com
- * @since      1.0.0
- *
- * @package    Daily_Islamic_Feed
- * @subpackage Daily_Islamic_Feed/includes
- */
-
-/**
  * Register Custom Post Types.
  *
  * Add extra posts types for Islamic feed contains Hadith, Ayat, and Name-of-Allah posts
@@ -84,7 +72,7 @@ class DIFeed_Post_Types
 			'public'       => true,
 			'show_in_rest' => true,
 			'menu_icon'    => 'dashicons-building',
-			'supports'      => array( 'title', 'author', 'thumbnail', 'revisions', 'editor', 'custom-fields', ),
+			'supports'      => array('title', 'author', 'thumbnail', 'revisions', 'editor', 'custom-fields',),
 			'show_in_menu' => 'inspiration-menu-top-level',
 			'taxonomies'   => array('schedule')
 		));
@@ -108,7 +96,7 @@ class DIFeed_Post_Types
 			'public'       => true,
 			'show_in_rest' => true,
 			'menu_icon'    => 'dashicons-building',
-			'supports'      => array( 'title', 'author', 'thumbnail', 'revisions', 'editor',  'custom-fields', ),
+			'supports'      => array('title', 'author', 'thumbnail', 'revisions', 'editor',  'custom-fields',),
 			'show_in_menu' => 'inspiration-menu-top-level',
 			'taxonomies'   => array('schedule'),
 		));
@@ -133,7 +121,7 @@ class DIFeed_Post_Types
 			'public'       => true,
 			'show_in_rest' => true,
 			'menu_icon'    => 'dashicons-building',
-			'supports'      => array( 'title', 'author', 'thumbnail', 'revisions', 'editor', 'custom-fields', ),
+			'supports'      => array('title', 'author', 'thumbnail', 'revisions', 'editor', 'custom-fields',),
 			'show_in_menu' => 'inspiration-menu-top-level'
 		));
 	}

@@ -1,6 +1,14 @@
 <?php
 
-
+/**
+ * Define new rest api route
+ *
+ *
+ * @since      1.0.0
+ * @package    Daily_Islamic_Feed
+ * @subpackage Daily_Islamic_Feed/includes
+ * @author     NuredinDev <nureddinbedevi@gmail.com>
+ */
 class DIFEED_REST_TODAY_CONTROLLER extends WP_REST_Controller
 {
 	/**

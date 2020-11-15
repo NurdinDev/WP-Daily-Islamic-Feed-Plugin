@@ -15,7 +15,6 @@
 
 // Your code starts here.
 
-
 // If this file is called directly, abort.
 if (!defined('WPINC')) {
 	die;
@@ -28,29 +27,6 @@ if (!defined('WPINC')) {
  */
 define('DIFEED_VERSION', '1.0.0');
 define('DIFEED_PLUGIN_DOMAIN', 'difeed');
-
-/**
- * The code that runs during plugin activation.
- * This action is documented in includes/class-difeed-activator.php
- */
-function activate_islamic_feed()
-{
-	require_once plugin_dir_path(__FILE__) . 'includes/class-difeed-activator.php';
-	DIFeed_Activator::activate();
-}
-
-/**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-difeed-deactivator.php
- */
-function deactivate_islamic_feed()
-{
-	require_once plugin_dir_path(__FILE__) . 'includes/class-difeed-deactivator.php';
-	DIFeed_Deactivator::deactivate();
-}
-
-register_activation_hook(__FILE__, 'activate_islamic_feed');
-register_deactivation_hook(__FILE__, 'deactivate_islamic_feed');
 
 /**
  * The core plugin class that is used to define internationalization,

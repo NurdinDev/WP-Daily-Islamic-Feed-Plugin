@@ -1,17 +1,6 @@
 <?php
 
 /**
- * Register Custom Fields
- *
- *
- * @link       http://example.com
- * @since      1.0.0
- *
- * @package    Daily_Islamic_Feed
- * @subpackage Daily_Islamic_Feed/includes
- */
-
-/**
  * Register Custom Fields.
  *
  *

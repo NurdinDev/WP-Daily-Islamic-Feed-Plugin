@@ -169,21 +169,25 @@ class DIFeed_Admin_Options
 	{
 		$options = get_option('difeed_options');
 		$value = isset($options[$args['label_for']]) ? $options[$args['label_for']] : '';
-		echo '<textarea class="fancy-textarea">' . esc_textarea($value) . '</textarea>';
+		echo '<textarea id="fancy-textarea-post">' . esc_textarea($value) . '</textarea>';
 	}
 	function hadith_style($args)
 	{
 		$options = get_option('difeed_options');
 		$value = isset($options[$args['label_for']]) ? $options[$args['label_for']] : '';
-		echo '<textarea class="fancy-textarea">' . esc_textarea($value) . '</textarea>';
+		echo '<textarea id="fancy-textarea-hadith">' . esc_textarea($value) . '</textarea>';
 	}
 
 	function ayah_style($args)
 	{
-		echo 'Content here';
+		$options = get_option('difeed_options');
+		$value = isset($options[$args['label_for']]) ? $options[$args['label_for']] : '';
+		echo '<textarea id="fancy-textarea-ayah">' . esc_textarea($value) . '</textarea>';
 	}
 	function names_style($args)
 	{
-		echo 'Content here';
+		$options = get_option('difeed_options');
+		$value = isset($options[$args['label_for']]) ? $options[$args['label_for']] : '';
+		echo '<textarea id="fancy-textarea-names">' . esc_textarea($value) . '</textarea>';
 	}
 }

@@ -1,19 +1,6 @@
 <?php
 
 /**
- * The file that defines the core plugin class
- *
- * A class definition that includes attributes and functions used across both the
- * public-facing side of the site and the admin area.
- *
- * @link       http://example.com
- * @since      1.0.0
- *
- * @package    Daily_Islamic_Feed
- * @subpackage Daily_Islamic_Feed/includes
- */
-
-/**
  * The core plugin class.
  *
  * This is used to define internationalization, admin-specific hooks, and
@@ -84,7 +71,6 @@ class Daily_Islamic_Feed
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
-		$this->define_admin_options_hooks();
 		$this->define_public_hooks();
 		$this->register_post_types();
 		$this->register_taxonomy();
@@ -110,42 +96,16 @@ class Daily_Islamic_Feed
 	private function load_dependencies()
 	{
 
-		/**
-		 * The class responsible for orchestrating the actions and filters of the
-		 * core plugin.
-		 */
 		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-difeed-loader.php';
-
-		/**
-		 * The class responsible for defining internationalization functionality
-		 * of the plugin.
-		 */
 		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-difeed-i18n.php';
-
-		/**
-		 * The class responsible for defining all actions that occur in the admin area.
-		 */
 		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-difeed-admin.php';
-
-		/**
-		 * The class responsible for defining all actions that occur in the admin options area.
-		 */
 		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-difeed-admin-options.php';
-
-		/**
-		 * The class responsible for defining all actions that occur in the public-facing
-		 * side of the site.
-		 */
 		require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-difeed-public.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-difeed-post-types.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-difeed-taxonomies.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-difeed-custom-fields.php';
 
 		$this->loader = new DIFeed_Loader();
-
-
-		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-difeed-post-types.php';
-
-		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-difeed-taxonomies.php';
-
-		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-difeed-custom-fields.php';
 	}
 
 	/**
@@ -161,7 +121,6 @@ class Daily_Islamic_Feed
 	{
 
 		$plugin_i18n = new DIFeed_i18n();
-
 		$this->loader->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
 	}
 	/**
@@ -203,7 +162,6 @@ class Daily_Islamic_Feed
 	{
 		$plugin_fields = new DIFeed_Custom_Fields($this->get_plugin_name(), $this->get_version());
 
-		// add custom field for start and end date on schedule taxonomy
 		$this->loader->add_action(DIFeed_Taxonomies::$SCHEDULE . '_add_form_fields', $plugin_fields, 'schedule_add_field', 10, 2);
 		$this->loader->add_action(DIFeed_Taxonomies::$SCHEDULE . '_edit_form_fields', $plugin_fields, 'schedule_edit_field', 10);
 		$this->loader->add_action('edited_' . DIFeed_Taxonomies::$SCHEDULE, $plugin_fields, 'schedule_save_field');
@@ -224,28 +182,14 @@ class Daily_Islamic_Feed
 
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
-
 		$this->loader->add_action('admin_menu',  $plugin_admin, 'add_inspiration_menu');
 		$this->loader->add_action('admin_menu',  $plugin_admin, 'add_inspiration_settings_submenu');
+		$this->loader->add_action('admin_init',  $plugin_admin, 'admin_options');
+		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'codemirror_enqueue_scripts');
 	}
 
 	/**
 	 * Register all of the hooks related to the admin area functionality
-	 * of the plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-	private function define_admin_options_hooks()
-	{
-
-		$plugin_admin = new DIFeed_Admin_Options($this->get_plugin_name(), $this->get_version());
-
-		$this->loader->add_action('admin_init',  $plugin_admin, 'difeed_register_settings');
-	}
-
-	/**
-	 * Register all of the hooks related to the public-facing functionality
 	 * of the plugin.
 	 *
 	 * @since    1.0.0
